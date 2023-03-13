@@ -5,12 +5,9 @@ function getComputerChoice(){
 return options[choice];
 }
 
-let rock;
-let paper;
-let scissors;
-function result(playerSelection,computerSelection)
+function playRound(playerSelection,computerSelection)
 {
- let yes;
+ let result;
     if(playerSelection === rock && computerSelection === paper)
     {
         result = "You Lose! Paper beats Rock";
@@ -29,9 +26,10 @@ function result(playerSelection,computerSelection)
     }else{ 
         result="You won! rock beats scissors";
     }
-    return result
+    return result;
     
 
 }
-
-result(scissors,rock);
+const playerSelection = "scissors"
+const computerSelection = getComputerChoice();
+playRound(playerSelection,computerSelection);
