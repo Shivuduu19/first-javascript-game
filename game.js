@@ -33,6 +33,7 @@ function playRound(playerSelection,computerSelection)
 function game(){
     let playerCount=0;
     let computerCount=0;
+    let draw=0;
     let got;
     for(i=0;i<5;i++){
         let playerSelection=prompt("Your choice");
@@ -41,11 +42,14 @@ function game(){
        
           if(rounds==="YOU WON!"){
             playerCount++;
-          }else{
+          }else if(rounds ==="YOU LOSE!"){
             computerCount++;
+          }else{
+            draw++;
           }
           console.log(playerCount);
           console.log(computerCount);
+          console.log(draw);
     }
     if(playerCount>computerCount){
         got="YOU WON!"
