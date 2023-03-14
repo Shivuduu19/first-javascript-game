@@ -11,3 +11,33 @@
     <script src="game.js"></script>
 </body>
 </html>
+
+
+
+
+function game()
+{
+    let playerCount=0;
+    let computerCount=0;
+    let got;
+    for(i=0;i<5;i++)
+    {
+         let playerSelection=prompt("Your choice");
+         let computerSelection = getComputerChoice();
+         let rounds = playRound(playerSelection,computerSelection);
+       console.log(rounds);
+            if(rounds==="YOU WON!"){
+            playerCount++;
+            console.log(playerCount);
+          }else{
+            computerCount++;
+          }
+    }
+    if(playerCount>computerCount){
+        got="YOU WON!"
+    }else{
+        got="YOU LOSE!"
+    }
+    return got;
+    console.log(playerCount);
+}
