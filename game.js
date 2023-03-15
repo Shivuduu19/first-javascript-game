@@ -16,18 +16,18 @@ function playRound(playerSelection,computerSelection)
     }else if(playerSelection=="rock" && computerSelection=="scissors"){
         result= "You Won! rock beats scissors";
     }else if(playerSelection=="paper" && computerSelection=="rock"){
-        result="You Won! paper beats rock";
+        result= "You Won! paper beats rock";
     }else if (playerSelection=="paper"&& computerSelection=="scissors"){
         result = "You Lose! scissors beats paper";
     }else if(playerSelection=="scissors"&& computerSelection=="rock"){
-        result="You Lose! rock beats scissors";
+        result= "You Lose! rock beats scissors";
     }else if(playerSelection=="scissors"&&computerSelection=="paper"){
-        result="You Won! scissors beats paper";
+        result= "You Won! scissors beats paper";
     }
     else{
             result = "Draw";
         }
-     return result.slice(0,8).toUpperCase();
+     return result;
 
 }    
 function game(){
@@ -36,13 +36,12 @@ function game(){
     let draw=0;
     let got;
     for(i=0;i<5;i++){
-        let playerSelection=prompt("Your choice");
+        let playerSelection=prompt("Your choice").toLowerCase();
          let computerSelection = getComputerChoice().toLowerCase(); 
         let rounds = playRound(playerSelection,computerSelection);
-       
-          if(rounds==="YOU WON!"){
+          if(rounds.toUpperCase().slice(0,8)=="YOU WON!"){
             playerCount++;
-          }else if(rounds ==="YOU LOSE!"){
+          }else if(rounds.toUpperCase().slice(0,9) =="YOU LOSE!"){
             computerCount++;
           }else{
             draw++;
@@ -55,9 +54,11 @@ function game(){
         got="YOU WON!"
     }else if(playerCount===computerCount){
         got = "draw"
+    }else if(computerCount>playerCount){
+        got = "YOU LOSE!"
     }
     else{
-        got="YOU LOSE!"
+        got="something went wrong"
     }
     return got;
 }
