@@ -1,13 +1,41 @@
 
+const body = document.querySelector('body');
+const rock = document.createElement("button");
+const paper = document.createElement("button");
+const scissors = document.createElement("button");
+const div = document.createElement('div');
+
+
+rock.textContent="ROCK";
+paper.textContent="PAPER";
+scissors.textContent="SCISSORS";
+body.appendChild(rock);
+body.appendChild(paper);
+body.appendChild(scissors);
+const btns = document.querySelectorAll('button');
+let playerCount =0;
+let computerCount =0;
+let drawCount =0;
+let totalRound = "not yet";
+btns.forEach((button)=>{
+    button.addEventListener('click',e=>{playRound(e.target.textContent.toLowerCase(),getComputerChoice())});  
+  
+});
+
+body.appendChild(div);
+
 function getComputerChoice(){
     let choice = Math.floor(Math.random()*3);
     const options = ["Rock","Paper","Scissors"];
-
-return options[choice];    
+return options[choice].toLowerCase();    
 }
 
 function playRound(playerSelection,computerSelection)
 {
+    console.log(playerSelection);
+    console.log(computerSelection);
+    const para = document.createElement('p');
+    const winner = document.createElement("h1");
  let result;   
         
     if(playerSelection=="rock" && computerSelection=="paper")
@@ -27,38 +55,30 @@ function playRound(playerSelection,computerSelection)
     else{
             result = "Draw";
         }
-     return result;
-
-}    
-function game(){
-    let playerCount=0;
-    let computerCount=0;
-    let draw=0;
-    let got;
-    for(i=0;i<5;i++){
-        let playerSelection=prompt("Your choice").toLowerCase();
-         let computerSelection = getComputerChoice().toLowerCase(); 
-        let rounds = playRound(playerSelection,computerSelection);
-          if(rounds.toUpperCase().slice(0,8)=="YOU WON!"){
-            playerCount++;
-          }else if(rounds.toUpperCase().slice(0,9) =="YOU LOSE!"){
-            computerCount++;
-          }else{
-            draw++;
-          }
-          console.log(playerCount);
-          console.log(computerCount);
-          console.log(draw);
-    }
-    if(playerCount>computerCount){
-        got="YOU WON!"
-    }else if(playerCount===computerCount){
-        got = "draw"
-    }else if(computerCount>playerCount){
-        got = "YOU LOSE!"
-    }
-    else{
-        got="something went wrong"
-    }
-    return got;
+    console.log(result);
+    if(result.toUpperCase().slice(0,8)=="YOU WON!"){
+        playerCount++;
+      }else if(result.toUpperCase().slice(0,9) =="YOU LOSE!"){
+        computerCount++;
+      }else{
+        drawCount++;
+      }
+      console.log(playerCount);
+      console.log(computerCount);
+      console.log(drawCount);
+      if(playerCount===5){
+        totalRound="YOU WON!";
+        div.appendChild(winner);
+      }else if(computerCount===5){
+        totalRound="YOU LOSE!";
+        div.appendChild(winner);
+      }
+      
+    para.textContent=`playerselection:${playerSelection},computerselection:${computerSelection} result of round:${result},
+        score of player =${playerCount},score of computer=${computerCount} `;
+        winner.textContent=`ANNOUNCEMENT=${totalRound}`;
+        div.appendChild(para);
+     
+    
+     
 }
